@@ -1,18 +1,23 @@
+abstract class AbAdapter {
+    abstract vote(): void
+}
+
 class SenateSystem {
-    constructor(adapter) {
+    adapter: AbAdapter | RufusAdapter
+    constructor(adapter: CurrentAdapter | RufusAdapter) {
         this.adapter = adapter
     }
-    vote() {
+    public vote() {
         this.adapter.vote()
     }
 }
 
-class CurrentAdapter {
+class CurrentAdapter extends AbAdapter {
     vote() {
         console.log('현 황제를 지지합니다.')
     }
 }
-class RufusAdapter {
+class RufusAdapter extends AbAdapter {
     vote() {
         console.log('루프스를 황제로 지지합니다.')
     }
