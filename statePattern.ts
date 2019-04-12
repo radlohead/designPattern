@@ -1,27 +1,32 @@
-class On {
+abstract class LaptopSetting {
+    abstract powerPush(): void
+}
+
+class On extends LaptopSetting {
     powerPush() {
         console.log('power on')
     }
 }
 
-class Saving {
+class Saving extends LaptopSetting {
     powerPush() {
         console.log('power saving')
     }
 }
 
-class Off {
+class Off extends LaptopSetting {
     powerPush() {
         console.log('power off')
     }
 }
 
 class Laptop {
+    powerState: any
     constructor() {
         this.powerState = null
     }
 
-    setPowerState(powerState) {
+    setPowerState(powerState: On | Saving | Off) {
         this.powerState = powerState
     }
     powerPush() {
