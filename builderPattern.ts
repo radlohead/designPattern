@@ -1,17 +1,25 @@
 class Pizza {
-    setDough(dough) {
+    dough: string
+    constructor() {
+        this.dough = ''
+    }
+    setDough(dough: string) {
         this.dough = dough
         console.log(this.dough)
     }
 }
 
-class SpicyPizzaBuilder extends Pizza {
+abstract class BuilderPizza extends Pizza {
+    abstract buildDough(): void
+}
+
+class SpicyPizzaBuilder extends BuilderPizza {
     buildDough() {
         this.setDough('spicy pizza')
     }
 }
 
-class PeperoniPizzaBuilder extends Pizza {
+class PeperoniPizzaBuilder extends BuilderPizza {
     buildDough() {
         this.setDough('peperoni pizza')
     }
