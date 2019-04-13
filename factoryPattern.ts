@@ -1,9 +1,15 @@
-class Factory {
-    constructor(name) {
+abstract class AbFactory {
+    abstract create(name: string): void
+}
+
+class Factory extends AbFactory {
+    name: string | undefined
+    constructor(name?: string) {
+        super()
         this.name = name
     }
 
-    create(name) {
+    create(name: string) {
         return new Factory(name)
     }
 
