@@ -1,5 +1,6 @@
 class Century {
-    constructor(leader) {
+    leader: string
+    constructor(leader: string) {
         this.leader = leader
     }
     getLeader() {
@@ -9,8 +10,15 @@ class Century {
         return 80
     }
 }
+
+type getNumberType = {
+    getNumber: Function
+}
+
 class Cohort {
-    constructor(leader) {
+    leader: string
+    centuries: []
+    constructor(leader: string) {
         this.leader = leader
         this.centuries = []
     }
@@ -19,17 +27,24 @@ class Cohort {
     }
     getNumber() {
         this.centuries = this.centuries
-            .map(century => century.getNumber())
+            .map((century: getNumberType) => century.getNumber())
             .reduce((p, c) => p + c)
         return this.centuries
     }
-    addCentury(century) {
-        this.centuries.push(century)
+    addCentury(century: Century) {
+        this.centuries.push(century as never)
         return this
     }
 }
+
+type centuriesType = {
+    centuries: number
+}
+
 class Leader {
-    constructor(leader) {
+    leader: string
+    cohorts: []
+    constructor(leader: string) {
         this.leader = leader
         this.cohorts = []
     }
@@ -37,13 +52,13 @@ class Leader {
         return this.leader
     }
     getNumber() {
-        this.cohorts = this.cohorts
-            .map(cohort => cohort.centuries)
+        const getNumber = this.cohorts
+            .map((cohort: centuriesType) => cohort.centuries)
             .reduce((p, c) => p + c)
-        return this.cohorts
+        return getNumber
     }
-    addCohort(cohort) {
-        this.cohorts.push(cohort)
+    addCohort(cohort: Cohort) {
+        this.cohorts.push(cohort as never)
         return this
     }
 }
