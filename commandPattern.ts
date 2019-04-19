@@ -7,7 +7,7 @@ const message = (msg: messageType['msg']) => {
 }
 
 interface ILight {
-    context: string
+    context: string | undefined
 }
 
 class Light implements ILight {
@@ -77,16 +77,16 @@ class MusicOffCommand extends Light {
     }
 }
 
-interface IRemoteControl {
+type IRemoteControl = {
     execute(): void
     undo(): void
 }
 
 class RemoteControl {
-    obj: IRemoteControl
-    undo: IRemoteControl
+    private obj: IRemoteControl
+    private undo: IRemoteControl
 
-    public setCommand(obj) {
+    public setCommand(obj: any) {
         this.obj = obj
     }
     public on() {
