@@ -16,7 +16,7 @@ class Vespasianus {
             return true
         })
     }
-    public register(target) {
+    public register(target: Mucianus) {
         this.subscribers.push(target)
         console.log(this.subscribers)
     }
@@ -34,23 +34,25 @@ class Mucianus {
     constructor() {
         this.list = []
     }
-    public subscribe(target) {
+    public subscribe(target: Vespasianus) {
         this.list.push({
             target,
             point: 0
         })
         target.register(this)
     }
-    public unsubscribe(target) {
+    public unsubscribe(target: Vespasianus) {
         this.list = this.list.filter(person => person.target !== target)
     }
-    public fire(target) {
-        this.list.some(person => {
-            if (person.target === target) {
-                ++person.point
-                return true
+    public fire(target: Vespasianus) {
+        this.list.some(
+            (person): boolean => {
+                if (person.target === target) {
+                    ++person.point
+                    return true
+                } else return false
             }
-        })
+        )
     }
 }
 
