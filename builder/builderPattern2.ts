@@ -1,24 +1,33 @@
-class RequestName {
+interface IRequestName {
     url: string
     method: string
+}
+
+class RequestName implements IRequestName {
+    url: IRequestName['url']
+    method: IRequestName['method']
     constructor() {
         this.url = ''
         this.method = ''
     }
 }
 
-class RequestMethod {
+interface IRequestMethod {
     request: RequestName
+}
+
+class RequestMethod implements IRequestMethod {
+    request: IRequestMethod['request']
     constructor() {
         this.request = new RequestName()
     }
 
-    setUrl(url: string) {
+    setUrl(url: IRequestName['url']) {
         this.request.url = url
         return this
     }
 
-    setMethod(method: string) {
+    setMethod(method: IRequestName['method']) {
         this.request.method = method
         return this
     }
@@ -28,8 +37,7 @@ class RequestMethod {
     }
 }
 
-const log = console.log
 const requestMethod = new RequestMethod()
     .setUrl('setting url')
     .setMethod('setting method')
-log(requestMethod.info())
+requestMethod.info()
