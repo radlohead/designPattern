@@ -1,4 +1,6 @@
-class Request {
+class RequestName {
+    url: string
+    method: string
     constructor() {
         this.url = ''
         this.method = ''
@@ -6,16 +8,17 @@ class Request {
 }
 
 class RequestMethod {
+    request: RequestName
     constructor() {
-        this.request = new Request()
+        this.request = new RequestName()
     }
 
-    setUrl(url) {
+    setUrl(url: string) {
         this.request.url = url
         return this
     }
 
-    setMethod(method) {
+    setMethod(method: string) {
         this.request.method = method
         return this
     }
