@@ -4,8 +4,13 @@ class Car {
     }
 }
 
-class CarPattern {
-    constructor(driver) {
+interface ICarPattern {
+    driver: Driver
+}
+
+class CarPattern implements ICarPattern {
+    driver: ICarPattern['driver']
+    constructor(driver: ICarPattern['driver']) {
         this.driver = driver
     }
 
@@ -15,12 +20,13 @@ class CarPattern {
 }
 
 class Driver {
-    constructor(age) {
+    age: number
+    constructor(age: number) {
         this.age = age
     }
 }
 
 const carPatternYoung = new CarPattern(new Driver(10))
-const carPatternOld = new CarPattern(new Driver(10))
+const carPatternOld = new CarPattern(new Driver(20))
 carPatternYoung.drive()
 carPatternOld.drive()
