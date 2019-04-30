@@ -1,9 +1,16 @@
-class FactoryCar {
-    constructor(name) {
+interface IFactoryCar {
+    name: string
+    info: FactorySmallCar | FactoryMiddleCar | null
+}
+
+class FactoryCar implements IFactoryCar {
+    name: IFactoryCar['name']
+    info: IFactoryCar['info']
+    constructor(name: IFactoryCar['name']) {
         ;(this.name = name), (this.info = null)
     }
 
-    creator(name) {
+    creator(name: IFactoryCar['name']) {
         this.info =
             name === 'small' ? new FactorySmallCar() : new FactoryMiddleCar()
     }
