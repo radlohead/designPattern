@@ -1,5 +1,10 @@
-class Adapter {
-    constructor(level) {
+interface IAdapter {
+    level: number
+}
+
+class Adapter implements IAdapter {
+    level: IAdapter['level']
+    constructor(level: IAdapter['level']) {
         this.level = level
     }
 
@@ -8,8 +13,13 @@ class Adapter {
     }
 }
 
-class AdapterPattern {
-    constructor(adapter) {
+interface IAdapterPattern {
+    adapter: Adapter
+}
+
+class AdapterPattern implements IAdapterPattern {
+    adapter: IAdapterPattern['adapter']
+    constructor(adapter: IAdapterPattern['adapter']) {
         this.adapter = adapter
     }
 
