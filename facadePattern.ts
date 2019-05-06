@@ -1,11 +1,21 @@
-class Coffee {
+interface ICoffee {
+    water: Water
+    milk: Milk
+    sugar: Sugar
+    volume(ml: number): number
+}
+
+class Coffee implements ICoffee {
+    water: Water
+    milk: Milk
+    sugar: Sugar
     constructor() {
         this.water = new Water()
         this.milk = new Milk()
         this.sugar = new Sugar()
     }
 
-    volume(ml) {
+    volume(ml: number): number {
         let result = 0
         result += this.water.volume(ml)
         result += this.milk.volume(ml)
@@ -16,19 +26,19 @@ class Coffee {
 }
 
 class Water {
-    volume(ml) {
+    volume(ml: number) {
         return ml * 1.5
     }
 }
 
 class Milk {
-    volume(ml) {
+    volume(ml: number) {
         return ml * 2
     }
 }
 
 class Sugar {
-    volume(ml) {
+    volume(ml: number) {
         return ml * 3
     }
 }
